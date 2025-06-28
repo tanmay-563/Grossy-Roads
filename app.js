@@ -10,7 +10,8 @@ https://javascriptgametutorials.com/
 
 */
 
-
+const nameTag = document.getElementById("name-tag");
+const tempV = new THREE.Vector3();
 import * as THREE from "https://esm.sh/three";
 
 const minTileIndex = -8;
@@ -39,6 +40,7 @@ function Camera() {
 
   return camera;
 }
+
 
 function Texture(width, height, rects) {
   const canvas = document.createElement("canvas");
@@ -778,6 +780,24 @@ function initializeGame() {
   if (resultDOM) resultDOM.style.visibility = "hidden";
 }
 
+function updateNameTagPosition() {
+  if (!nameTag || !camera || !renderer) return;
+
+  // Get hen (player) world position
+  player.getWorldPosition(tempV);
+
+  // Convert world position to screen space
+  tempV.project(camera);
+
+  const x = (tempV.x * 0.5 + 0.5) * window.innerWidth;
+  const y = (-tempV.y * 0.5 + 0.5) * window.innerHeight;
+
+  // Position the tag above the hen
+  nameTag.style.left = `${x}px`;
+  nameTag.style.top = `${y - 20}px`; // slightly above the player
+}
+
+
 const renderer = Renderer();
 renderer.setAnimationLoop(animate);
 
@@ -785,6 +805,7 @@ function animate() {
   animateVehicles();
   animatePlayer();
   hitTest();
+  updateNameTagPosition();
 
   renderer.render(scene, camera);
 }
