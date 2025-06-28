@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La la la la</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas class="game"></canvas>
+
+  <div id="controls">
+    <div>
+      <button id="forward">▲</button>
+      <button id="left">◀</button>
+      <button id="backward">▼</button>
+      <button id="right">▶</button>
+    </div>
+  </div>
+
+  <div id="score">0</div>
+
+  <div id="result-container">
+    <div id="result">
+      <h1>Game Over</h1>
+      <p>Your score: <span id="final-score"></span></p>
+      <button id="retry">Retry</button>
+    </div>
+  </div>
+
+
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <!-- Your Game Script -->
+<script type="module" src="app.js"></script>
+</body>
+</html>
